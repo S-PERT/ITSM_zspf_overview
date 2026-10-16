@@ -1,0 +1,19 @@
+specVersion: "3.0"
+metadata:
+  name: zspf_overview
+type: application
+builder:
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        ignoreCertError: true
+        target:
+          url: https://saphana2.s-pert.com:44360
+          client: '100'
+          auth: basic
+        app:
+          name: ZSPF_OVERVIEW
+          package: ZSP_ITSM_OVERVIEWPAGE
+          transport: SPDK903810
+          description: "고객 요청현황"

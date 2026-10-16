@@ -1,0 +1,319 @@
+{
+  "_version": "1.49.0",
+  "sap.app": {
+    "id": "zsp.itsm.zspfoverview",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.9"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:ovp",
+      "version": "1.10.1",
+      "toolsId": "0aac189c-7a6b-4d4c-b0c1-20e1db4abb80"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZSP_ITSM_P_OVERVIEW_UI_V2",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "mainService_Annotation",
+            "localAnnotations"
+          ],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "mainService_Annotation": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZSP_ITSM_P_OVERVIEW_UI_V2_VAN',Version='0001')/$value",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService_Annotation.xml"
+        }
+      },
+      "localAnnotations": {
+        "uri": "annotations/annotation.xml",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "zspf_overview-display": {
+          "semanticObject": "ZSPF_OVERVIEW",
+          "action": "display",
+          "title": "{{appTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.108.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.f": {},
+        "sap.ovp": {},
+        "sap.ui.rta": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "zsp.itsm.zspfoverview.i18n.i18n"
+        }
+      },
+      "mainModel": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false,
+          "metadataUrlParams": {
+            "sap-value-list": "none",
+            "sap-servercache": "false"
+          }
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "routing": {
+      "config": {},
+      "routes": [],
+      "targets": {}
+    }
+  },
+  "sap.ovp": {
+    "globalFilterModel": "mainModel",
+    "globalFilterEntityType": "MainType",
+    "containerLayout": "resizable",
+    "enableLiveFilter": true,
+    "considerAnalyticalParameters": true,
+    "cards": {
+      "card010": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "고객별 요청현황",
+          "entitySet": "Main",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#RequestCnt",
+          "subTitle": "",
+          "valueSelectionInfo": "요청현황",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Request03",
+          "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#identification01",
+          "defaultSpan": {
+            "cols": 1,
+            "rows": 16
+          }
+        },
+        "dashboardLayout": {
+          "row": 1,
+          "column": 1,
+          "colSpan": 1,
+          "rowSpan": 16
+        }
+      },
+      "card020": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "고객별 요청현황",
+          "entitySet": "Main",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#RequestCnt",
+          "valueSelectionInfo": "요청현황",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Request01",
+          "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#identification01",
+          "defaultSpan": {
+            "cols": 1,
+            "rows": 16
+          }
+        },
+        "dashboardLayout": {
+          "row": 1,
+          "column": 2,
+          "colSpan": 1,
+          "rowSpan": 16
+        }
+      },
+      "card030": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "담당자별 처리현황",
+          "entitySet": "Manager",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#SuccCnt",
+          "valueSelectionInfo": "완료건수",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Request02",
+          "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#identification01",
+          "defaultSpan": {
+            "cols": 1,
+            "rows": 16
+          }
+        },
+        "dashboardLayout": {
+          "row": 1,
+          "column": 3,
+          "colSpan": 1,
+          "rowSpan": 16
+        }
+      },
+      "card033": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "분류별 처리현황",
+          "entitySet": "Main",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#SuccCnt",
+          "valueSelectionInfo": "완료건수",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Request04",
+          "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#identification01",
+          "defaultSpan": {
+            "cols": 1,
+            "rows": 16
+          }
+        },
+        "dashboardLayout": {
+          "row": 1,
+          "column": 4,
+          "colSpan": 1,
+          "rowSpan": 16
+        }
+      },
+      "card040": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.table",
+        "settings": {
+          "title": "현재일 기준 지연현황",
+          "entitySet": "Manager",
+          "sortOrder": "ascending",
+          "sortBy": "DelayDays",
+          "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#delay01",
+          "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#identification01",
+          "defaultSpan": {
+            "cols": 1,
+            "rows": 16
+          }
+        },
+        "dashboardLayout": {
+          "row": 1,
+          "column": 5,
+          "colSpan": 1,
+          "rowSpan": 16
+        }
+      },
+      "card050": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.linklist",
+        "settings": {
+          "title": "운영담당자",
+          "subTitle": "연락처",
+          "entitySet": "ContactDetail",
+          "useGlobalFilter": false,
+          "listFlavor": "standard",
+          "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#ContactList",
+          "headerAnnotationPath": "com.sap.vocabularies.UI.v1.HeaderInfo",
+          "defaultSpan": {
+            "cols": 5,
+            "rows": 12
+          }
+        },
+        "dashboardLayout": {
+          "row": 17,
+          "column": 1,
+          "colSpan": 5,
+          "rowSpan": 12
+        }
+      },
+      "card900": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.linklist",
+        "settings": {
+          "title": "네이버 웍스",
+          "listFlavor": "standard",
+          "staticContent": [
+            {
+              "title": "메일",
+              "imageUri": "sap-icon://email",
+              "targetUri": "https://mail.worksmobile.com/",
+              "openInNewWindow": true
+            },
+            {
+              "title": "게시판",
+              "imageUri": "sap-icon://task",
+              "targetUri": "https://board.worksmobile.com/",
+              "openInNewWindow": true
+            },
+            {
+              "title": "캘린더",
+              "imageUri": "sap-icon://calendar",
+              "targetUri": "https://calendar.worksmobile.com/main.nhn",
+              "openInNewWindow": true
+            }
+          ],
+          "defaultSpan": {
+            "cols": 5,
+            "rows": 12
+          }
+        },
+        "dashboardLayout": {
+          "row": 29,
+          "column": 1,
+          "colSpan": 5,
+          "rowSpan": 12
+        }
+      }
+    },
+    "chartSettings": {
+      "showDataLabel": true
+    },
+    "filterSettings": {
+      "dateSettings": {
+        "fields": {
+          "ReqDate": {
+            "defaultValue": {
+              "operation": "YEARTODATE"
+            }
+          }
+        }
+      }
+    }
+  }
+}

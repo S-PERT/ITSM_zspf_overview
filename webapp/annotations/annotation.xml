@@ -1,0 +1,425 @@
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="/sap/opu/odata/sap/ZSP_ITSM_P_OVERVIEW_UI_V2/$metadata">
+    <edmx:Include Namespace="ZSP_ITSM_P_OVERVIEW_UI_V2" Alias="SAP"/>
+    <edmx:Include Namespace="cds_zsp_itsm_p_overviewpage_ui"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value">
+    <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="zspf_overview.annotations" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.ManagerType">
+        <Annotation Term="UI.Chart" Qualifier="Request02">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="담당자별 처리현황"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Combination"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Manager</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Manager"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>SuccCnt</PropertyPath>
+                <PropertyPath>RequestCnt</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="SuccCnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis2"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="RequestCnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.Identification" Qualifier="identification01">
+          <Collection>
+            <Record Type="UI.DataFieldForIntentBasedNavigation">
+              <PropertyValue Property="Label" String="상세(Intent)"/>
+              <PropertyValue Property="SemanticObject" String="ZSPF_OVERVIEW"/>
+              <PropertyValue Property="Action" String="display"/>
+              <PropertyValue Property="RequiresContext" Bool="false"/>
+              <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      
+        
+
+        <Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
+          <Collection>
+            <Record Type="com.sap.vocabularies.UI.v1.DataField">
+              <PropertyValue Property="Value" Path="Mngname"/>
+            </Record>
+            <Record Type="com.sap.vocabularies.UI.v1.DataField">
+              <PropertyValue Property="Value" Path="to_ManagerContact/Posit"/>
+            </Record>
+          </Collection>
+        </Annotation>
+</Annotations>
+
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.ManagerType">
+        <Annotation Term="UI.Chart" Qualifier="Request02">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="담당자별 처리현황"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Combination"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Manager</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Manager"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>RequestCnt</PropertyPath>
+                <PropertyPath>SuccCnt</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="RequestCnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="SuccCnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis2"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.LineItem" Qualifier="delay01">
+          <Collection>
+            <Record Type="UI.DataFieldForAnnotation">
+              <PropertyValue Property="Label" String="지연일"/>
+              <PropertyValue Property="Criticality" Path="DelayDaysCriticality"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#DelayDays"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Custno"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Manager"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="PlanDate"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.ManagerType/RequestCnt">
+        <Annotation Term="com.sap.vocabularies.Common.v1.Label" String="요청현황"/>
+      </Annotations>
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.ManagerType/SuccCnt">
+        <Annotation Term="com.sap.vocabularies.Common.v1.Label" String="완료"/>
+      </Annotations>
+
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.MainType/RequestCnt">
+        <Annotation Term="com.sap.vocabularies.Common.v1.Label" String="요청현황"/>
+      </Annotations>
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.MainType/SuccCnt">
+        <Annotation Term="com.sap.vocabularies.Common.v1.Label" String="완료"/>
+      </Annotations>
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.MainType/Rcnt">
+        <Annotation Term="com.sap.vocabularies.Common.v1.Label" String="검토중"/>
+      </Annotations>
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.MainType/Ccnt">
+        <Annotation Term="com.sap.vocabularies.Common.v1.Label" String="취소"/>
+      </Annotations>
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.MainType/Pcnt">
+        <Annotation Term="com.sap.vocabularies.Common.v1.Label" String="진행중"/>
+      </Annotations>
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.MainType/Tcnt">
+        <Annotation Term="com.sap.vocabularies.Common.v1.Label" String="테스트중"/>
+      </Annotations>
+
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.MainType">
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>ReqDate</PropertyPath>
+            <PropertyPath>Custno</PropertyPath>
+            <PropertyPath>Manager</PropertyPath>
+            <PropertyPath>ReqType</PropertyPath>
+            <PropertyPath>Zstat</PropertyPath>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.Chart" Qualifier="Request01">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="고객별 요청현황"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Custno</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Custno"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>RequestCnt</PropertyPath>
+                <PropertyPath>SuccCnt</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="RequestCnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="SuccCnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis2"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.Chart" Qualifier="Request03">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="고객별 진행상태 현황"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Custno</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Custno"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>Rcnt</PropertyPath>
+                <PropertyPath>Pcnt</PropertyPath>
+                <PropertyPath>Tcnt</PropertyPath>
+                <PropertyPath>Ccnt</PropertyPath>
+                <PropertyPath>SuccCnt</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="Rcnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="Pcnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="Tcnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="Ccnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="SuccCnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.Chart" Qualifier="Request04">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="솔루션별 처리현황"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Combination"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>SolutionFlag</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="SolutionFlag"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>RequestCnt</PropertyPath>
+                <PropertyPath>SuccCnt</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="RequestCnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="SuccCnt"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis2"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.Identification" Qualifier="identification01">
+          <Collection>
+            <Record Type="UI.DataFieldForIntentBasedNavigation">
+              <PropertyValue Property="Label" String="상세(Intent)"/>
+              <PropertyValue Property="SemanticObject" String="ZSPF_OVERVIEW"/>
+              <PropertyValue Property="Action" String="display"/>
+              <PropertyValue Property="RequiresContext" Bool="false"/>
+              <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+    
+      
+
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.ContactDetailType">
+        <Annotation Term="com.sap.vocabularies.UI.v1.LineItem" Qualifier="ContactList">
+          <Collection>
+            <Record Type="com.sap.vocabularies.UI.v1.DataField">
+              <PropertyValue Property="Value" Path="Mngname"/>
+            </Record>
+            <Record Type="com.sap.vocabularies.UI.v1.DataField">
+              <PropertyValue Property="Value" Path="Posit"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="com.sap.vocabularies.UI.v1.HeaderInfo">
+          <Record>
+            <PropertyValue Property="TypeName" String="운영담당자"/>
+            <PropertyValue Property="TypeNamePlural" String="운영담당자"/>
+            <PropertyValue Property="ImageUrl" Path="Attachment"/>
+            <PropertyValue Property="Title">
+              <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                <PropertyValue Property="Value" Path="Manager"/>
+              </Record>
+            </PropertyValue>
+            <PropertyValue Property="Description">
+              <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                <PropertyValue Property="Value" Path="PositText"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="com.sap.vocabularies.Communication.v1.Contact">
+          <Record>
+            <PropertyValue Property="photo" Path="Attachment"/>
+            <PropertyValue Property="fn" Path="Mngname"/>
+            <PropertyValue Property="title" Path="PositText"/>
+            <PropertyValue Property="org" Path="UnitText"/>
+            <PropertyValue Property="email">
+              <Collection>
+                <Record>
+                  <PropertyValue Property="type" EnumMember="com.sap.vocabularies.Communication.v1.ContactInformationType/work"/>
+                  <PropertyValue Property="address" Path="Email"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="tel">
+              <Collection>
+                <Record>
+                  <PropertyValue Property="type" EnumMember="com.sap.vocabularies.Communication.v1.PhoneType/work"/>
+                  <PropertyValue Property="uri" Path="Phone"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+
+
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.ContactType">
+        <Annotation Term="com.sap.vocabularies.UI.v1.LineItem" Qualifier="ContactList">
+          <Collection>
+            <Record Type="com.sap.vocabularies.UI.v1.DataField">
+              <PropertyValue Property="Value" Path="Mngname"/>
+            </Record>
+            <Record Type="com.sap.vocabularies.UI.v1.DataField">
+              <PropertyValue Property="Value" Path="Posit"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="com.sap.vocabularies.UI.v1.HeaderInfo">
+          <Record>
+            <PropertyValue Property="TypeName" String="운영담당자"/>
+            <PropertyValue Property="TypeNamePlural" String="운영담당자"/>
+            <PropertyValue Property="Title">
+              <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                <PropertyValue Property="Value" Path="Manager"/>
+              </Record>
+            </PropertyValue>
+            <PropertyValue Property="Description">
+              <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                <PropertyValue Property="Value" Path="PositText"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="com.sap.vocabularies.Communication.v1.Contact">
+          <Record>
+            <PropertyValue Property="fn" Path="Mngname"/>
+            <PropertyValue Property="title" Path="PositText"/>
+            <PropertyValue Property="org" Path="UnitText"/>
+            <PropertyValue Property="email">
+              <Collection>
+                <Record>
+                  <PropertyValue Property="type" EnumMember="com.sap.vocabularies.Communication.v1.ContactInformationType/work"/>
+                  <PropertyValue Property="address" Path="Email"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="tel">
+              <Collection>
+                <Record>
+                  <PropertyValue Property="type" EnumMember="com.sap.vocabularies.Communication.v1.PhoneType/work"/>
+                  <PropertyValue Property="uri" Path="Phone"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+
+
+      <Annotations Target="cds_zsp_itsm_p_overviewpage_ui.ContactDetailType/Manager">
+        <Annotation Term="com.sap.vocabularies.Common.v1.Text" Path="Mngname"/>
+        <Annotation Term="com.sap.vocabularies.UI.v1.TextArrangement" EnumMember="com.sap.vocabularies.UI.v1.TextArrangementType/TextLast"/>
+      </Annotations>
+
+</Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
