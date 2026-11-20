@@ -132,7 +132,7 @@
         "model": "mainModel",
         "template": "sap.ovp.cards.charts.analytical",
         "settings": {
-          "title": "고객별 요청현황",
+          "title": "고객별 진행상태 현황",
           "entitySet": "Main",
           "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#RequestCnt",
           "subTitle": "",
@@ -199,7 +199,7 @@
         "model": "mainModel",
         "template": "sap.ovp.cards.charts.analytical",
         "settings": {
-          "title": "분류별 처리현황",
+          "title": "솔루션별 처리현황",
           "entitySet": "Main",
           "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#SuccCnt",
           "valueSelectionInfo": "완료건수",

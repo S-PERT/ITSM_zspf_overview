@@ -15,5 +15,5 @@ builder:
         app:
           name: ZSPF_OVERVIEW
           package: ZSP_ITSM_OVERVIEWPAGE
-          transport: SPDK903810
+          transport: SPDK904168
           description: "고객 요청현황"
